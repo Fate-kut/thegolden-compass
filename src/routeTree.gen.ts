@@ -16,6 +16,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PoolsRouteImport } from './routes/pools'
+import { Route as PocketRouteImport } from './routes/pocket'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as NavigatorRouteImport } from './routes/navigator'
 import { Route as McpRouteImport } from './routes/mcp'
@@ -85,6 +86,11 @@ const PortfolioRoute = PortfolioRouteImport.update({
 const PoolsRoute = PoolsRouteImport.update({
   id: '/pools',
   path: '/pools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PocketRoute = PocketRouteImport.update({
+  id: '/pocket',
+  path: '/pocket',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrdersRoute = OrdersRouteImport.update({
@@ -280,6 +286,7 @@ export interface FileRoutesByFullPath {
   '/mcp': typeof McpRoute
   '/navigator': typeof NavigatorRoute
   '/orders': typeof OrdersRoute
+  '/pocket': typeof PocketRoute
   '/pools': typeof PoolsRoute
   '/portfolio': typeof PortfolioRoute
   '/profile': typeof ProfileRoute
@@ -324,6 +331,7 @@ export interface FileRoutesByTo {
   '/mcp': typeof McpRoute
   '/navigator': typeof NavigatorRoute
   '/orders': typeof OrdersRoute
+  '/pocket': typeof PocketRoute
   '/pools': typeof PoolsRoute
   '/portfolio': typeof PortfolioRoute
   '/profile': typeof ProfileRoute
@@ -369,6 +377,7 @@ export interface FileRoutesById {
   '/mcp': typeof McpRoute
   '/navigator': typeof NavigatorRoute
   '/orders': typeof OrdersRoute
+  '/pocket': typeof PocketRoute
   '/pools': typeof PoolsRoute
   '/portfolio': typeof PortfolioRoute
   '/profile': typeof ProfileRoute
@@ -415,6 +424,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/navigator'
     | '/orders'
+    | '/pocket'
     | '/pools'
     | '/portfolio'
     | '/profile'
@@ -459,6 +469,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/navigator'
     | '/orders'
+    | '/pocket'
     | '/pools'
     | '/portfolio'
     | '/profile'
@@ -503,6 +514,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/navigator'
     | '/orders'
+    | '/pocket'
     | '/pools'
     | '/portfolio'
     | '/profile'
@@ -548,6 +560,7 @@ export interface RootRouteChildren {
   McpRoute: typeof McpRoute
   NavigatorRoute: typeof NavigatorRoute
   OrdersRoute: typeof OrdersRoute
+  PocketRoute: typeof PocketRoute
   PoolsRoute: typeof PoolsRoute
   PortfolioRoute: typeof PortfolioRoute
   ProfileRoute: typeof ProfileRoute
@@ -627,6 +640,13 @@ declare module '@tanstack/react-router' {
       path: '/pools'
       fullPath: '/pools'
       preLoaderRoute: typeof PoolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pocket': {
+      id: '/pocket'
+      path: '/pocket'
+      fullPath: '/pocket'
+      preLoaderRoute: typeof PocketRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/orders': {
@@ -902,6 +922,7 @@ const rootRouteChildren: RootRouteChildren = {
   McpRoute: McpRoute,
   NavigatorRoute: NavigatorRoute,
   OrdersRoute: OrdersRoute,
+  PocketRoute: PocketRoute,
   PoolsRoute: PoolsRoute,
   PortfolioRoute: PortfolioRoute,
   ProfileRoute: ProfileRoute,
