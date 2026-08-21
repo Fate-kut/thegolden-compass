@@ -16,6 +16,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PoolsRouteImport } from './routes/pools'
+import { Route as PocketRouteImport } from './routes/pocket'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as NavigatorRouteImport } from './routes/navigator'
 import { Route as McpRouteImport } from './routes/mcp'
@@ -25,6 +26,7 @@ import { Route as KycRouteImport } from './routes/kyc'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as CommandRouteImport } from './routes/command'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as StockSymbolRouteImport } from './routes/stock.$symbol'
@@ -86,6 +88,11 @@ const PoolsRoute = PoolsRouteImport.update({
   path: '/pools',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PocketRoute = PocketRouteImport.update({
+  id: '/pocket',
+  path: '/pocket',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrdersRoute = OrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
@@ -129,6 +136,11 @@ const HistoryRoute = HistoryRouteImport.update({
 const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   id: '/forgot-password',
   path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandRoute = CommandRouteImport.update({
+  id: '/command',
+  path: '/command',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -264,6 +276,7 @@ const Char91DotmcpChar93InvokeToolToolRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/command': typeof CommandRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/history': typeof HistoryRoute
   '/home': typeof HomeRoute
@@ -273,6 +286,7 @@ export interface FileRoutesByFullPath {
   '/mcp': typeof McpRoute
   '/navigator': typeof NavigatorRoute
   '/orders': typeof OrdersRoute
+  '/pocket': typeof PocketRoute
   '/pools': typeof PoolsRoute
   '/portfolio': typeof PortfolioRoute
   '/profile': typeof ProfileRoute
@@ -307,6 +321,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/command': typeof CommandRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/history': typeof HistoryRoute
   '/home': typeof HomeRoute
@@ -316,6 +331,7 @@ export interface FileRoutesByTo {
   '/mcp': typeof McpRoute
   '/navigator': typeof NavigatorRoute
   '/orders': typeof OrdersRoute
+  '/pocket': typeof PocketRoute
   '/pools': typeof PoolsRoute
   '/portfolio': typeof PortfolioRoute
   '/profile': typeof ProfileRoute
@@ -351,6 +367,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/command': typeof CommandRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/history': typeof HistoryRoute
   '/home': typeof HomeRoute
@@ -360,6 +377,7 @@ export interface FileRoutesById {
   '/mcp': typeof McpRoute
   '/navigator': typeof NavigatorRoute
   '/orders': typeof OrdersRoute
+  '/pocket': typeof PocketRoute
   '/pools': typeof PoolsRoute
   '/portfolio': typeof PortfolioRoute
   '/profile': typeof ProfileRoute
@@ -396,6 +414,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/command'
     | '/forgot-password'
     | '/history'
     | '/home'
@@ -405,6 +424,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/navigator'
     | '/orders'
+    | '/pocket'
     | '/pools'
     | '/portfolio'
     | '/profile'
@@ -439,6 +459,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/admin'
+    | '/command'
     | '/forgot-password'
     | '/history'
     | '/home'
@@ -448,6 +469,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/navigator'
     | '/orders'
+    | '/pocket'
     | '/pools'
     | '/portfolio'
     | '/profile'
@@ -482,6 +504,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/command'
     | '/forgot-password'
     | '/history'
     | '/home'
@@ -491,6 +514,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/navigator'
     | '/orders'
+    | '/pocket'
     | '/pools'
     | '/portfolio'
     | '/profile'
@@ -526,6 +550,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  CommandRoute: typeof CommandRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   HistoryRoute: typeof HistoryRoute
   HomeRoute: typeof HomeRoute
@@ -535,6 +560,7 @@ export interface RootRouteChildren {
   McpRoute: typeof McpRoute
   NavigatorRoute: typeof NavigatorRoute
   OrdersRoute: typeof OrdersRoute
+  PocketRoute: typeof PocketRoute
   PoolsRoute: typeof PoolsRoute
   PortfolioRoute: typeof PortfolioRoute
   ProfileRoute: typeof ProfileRoute
@@ -616,6 +642,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PoolsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pocket': {
+      id: '/pocket'
+      path: '/pocket'
+      fullPath: '/pocket'
+      preLoaderRoute: typeof PocketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/orders': {
       id: '/orders'
       path: '/orders'
@@ -677,6 +710,13 @@ declare module '@tanstack/react-router' {
       path: '/forgot-password'
       fullPath: '/forgot-password'
       preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/command': {
+      id: '/command'
+      path: '/command'
+      fullPath: '/command'
+      preLoaderRoute: typeof CommandRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -872,6 +912,7 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  CommandRoute: CommandRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   HistoryRoute: HistoryRoute,
   HomeRoute: HomeRoute,
@@ -881,6 +922,7 @@ const rootRouteChildren: RootRouteChildren = {
   McpRoute: McpRoute,
   NavigatorRoute: NavigatorRoute,
   OrdersRoute: OrdersRoute,
+  PocketRoute: PocketRoute,
   PoolsRoute: PoolsRoute,
   PortfolioRoute: PortfolioRoute,
   ProfileRoute: ProfileRoute,
